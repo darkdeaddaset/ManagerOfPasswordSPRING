@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="kmve_afw" id="1">
+
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="login" type="varchar">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="password" type="varchar">
+                <constraints nullable="true" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="departments">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="name" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(32)"/>
+        </createTable>
+
+        <createTable tableName="records">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="name" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="varchar"/>
+        </createTable>
+
+        <createTable tableName="admin">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" deleteCascade="true"/>
+            </column>
+            <column name="department_id" type="bigint">
+                <constraints nullable="false" deleteCascade="true"/>
+            </column>
+        </createTable>
+        
+        <createTable tableName="records_users">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" deleteCascade="true"/>
+            </column>
+            <column name="record_id" type="bigint">
+                <constraints nullable="false" deleteCascade="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="users_departments">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" deleteCascade="true"/>
+            </column>
+            <column name="department_id" type="bigint">
+                <constraints nullable="false" deleteCascade="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="users_roles">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" unique="false" deleteCascade="true"/>
+            </column>
+            <column name="roles" type="integer"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

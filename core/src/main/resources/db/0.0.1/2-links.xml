@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="kmve_afw" id="2">
+
+        <addForeignKeyConstraint baseTableName="admin"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_users_departments_admin"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="admin"
+                                 baseColumnNames="department_id"
+                                 constraintName="fk_departments_users_admin"
+                                 referencedTableName="departments"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="users_departments"
+                                 baseColumnNames="department_id"
+                                 constraintName="fk_departments_users"
+                                 referencedTableName="departments"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="users_departments"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_users_departments"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="records_users"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_users_record"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="records_users"
+                                 baseColumnNames="record_id"
+                                 constraintName="fk_record_users"
+                                 referencedTableName="records"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="users_roles"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_users_roles"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+
+        <createSequence sequenceName="hibernate_sequence"
+                        startValue="1" incrementBy="1"/>
+    </changeSet>
+</databaseChangeLog>

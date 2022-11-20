@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    username: postgres
+    password: 1234
+    url: jdbc:postgresql://localhost:5432/mop
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    change-log: classpath:/db/changelog.xml
+    enabled: true
+
+  application:
+    name: manager_of_passwords
+
+jwt:
+  secret:
+    access: qBTmv4oXFFR2GwjexDJ4t6fsIUIUhhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w==
